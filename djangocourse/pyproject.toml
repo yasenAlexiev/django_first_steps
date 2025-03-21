@@ -8,12 +8,16 @@ authors = [
 readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
-    "django (>=5.1.7,<6.0.0)"
+    "django (>=5.1.7,<6.0.0)",
+    "django-allauth[socialaccount] (>=65.5.0,<66.0.0)"
 ]
 
 [tool.poetry]
 packages = [{include = "djangocourse", from = "src"}]
 
+
+[tool.poetry.group.dev.dependencies]
+django-debug-toolbar = "^5.0.1"
 
 [build-system]
 requires = ["poetry-core>=2.0.0,<3.0.0"]

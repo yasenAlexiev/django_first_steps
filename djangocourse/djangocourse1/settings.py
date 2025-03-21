@@ -23,15 +23,20 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-*48xo)4kuzp86ysjd6w#et#%eamkd@@*drlci=-(q%nm06=ykn'
 
 # SECURITY WARNING: don't run with debug turned on in production!
+import os
+
 DEBUG = True
 
 ALLOWED_HOSTS = []
 
+AUTHENTICATION_BACKENDS = [
+    "allauth.account.auth_backends.AuthenticationBackend"
+]
+
 
 # Application definition
 
-INSTALLED_APPS = [
-    'app.apps.AppConfig',
+DJANGO_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -39,6 +44,17 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 ]
+
+THIRD_PARTY_APPS = [
+    "allauth",
+    "allauth.account"
+]
+
+PROJECT_APPS = [
+    "app.apps.AppConfig"
+]
+
+INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + PROJECT_APPS
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -48,7 +64,29 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'allauth.account.middleware.AccountMiddleware',
 ]
+
+if DEBUG:
+    INSTALLED_APPS += [
+        'debug_toolbar'
+    ]
+
+    MIDDLEWARE += [
+        "debug_toolbar.middleware.DebugToolbarMiddleware"
+    ]
+
+    import socket
+
+    hostname, _, ips = socket.gethostbyname_ex(socket.gethostname())
+    INTERNAL_IPS = [ip[:-1] + "1" for ip in ips] + ["127.0.0.1"]
+    INTERNAL_IPS += ["192.168.65.1"]
+    
+    DEBUG_TOOLBAR_CONFIG = {
+        'SHOW_TOOLBAR_CALLBACK': lambda request: True,  # ✅ Always show the toolbar
+    }
+
+
 
 ROOT_URLCONF = 'djangocourse1.urls'
 
@@ -103,6 +141,9 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+
+LOGIN_REDIRECT_URL = "home"
+LOGOUT_REDIRECT_URL = "account_login"
 
 # Internationalization
 # https://docs.djangoproject.com/en/5.1/topics/i18n/
