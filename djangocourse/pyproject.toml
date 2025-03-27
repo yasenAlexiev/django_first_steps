@@ -12,6 +12,7 @@ dependencies = [
     "django-allauth[socialaccount] (>=65.5.0,<66.0.0)",
     "psycopg (>=3.2.6,<4.0.0)",
     "dj-database-url (>=2.3.0,<3.0.0)",
+    "django-widget-tweaks (>=1.5.0,<2.0.0)",
 ]
 
 [tool.poetry]
@@ -21,7 +22,6 @@ packages = [{include = "djangocourse", from = "src"}]
 [tool.poetry.group.dev.dependencies]
 django-debug-toolbar = "^5.0.1"
 django-browser-reload = "^1.18.0"
-django-widget-tweaks = "^1.5.0"
 
 [build-system]
 requires = ["poetry-core>=2.0.0,<3.0.0"]

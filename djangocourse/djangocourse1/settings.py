@@ -53,7 +53,7 @@ THIRD_PARTY_APPS = [
     "allauth.socialaccount",
     "allauth.socialaccount.providers.github",
     "django_browser_reload",
-    "django_widget_tweaks",
+    "widget_tweaks",
 ]
 
 PROJECT_APPS = [
