@@ -20,28 +20,37 @@
         </div>
         <div class="basis-2/5">
             <div class="bg-gray-800 text-white rounded-lg">
-                <div class="p-6 lg:p-16">
+                <div class="p-4 lg:p-16">
                     <p class="text-xl font-semibold">Create your account</p>
                     <div class="mt-6">
                         <form method="post" class="space-y-6 mb-4" action="{% url 'account_signup' %}">
                             {% csrf_token %}
-                            <div class="mt-4">
+                            <div>
                                 <label class="sr-only" for="form.email.id_for_label">Email</label>
                                 <div class="form-field">
                                     {% render_field form.email class="block text-black shadow-sm focus:ring-emerald-500 focus:border-emerald-500 text-sm" placeholder="Email" %}
                                 </div>
                             </div>
-                            <div class="mt-4">
+                            <div class="space-y-2">
                                 <label class="sr-only" for="form.password1.id_for_label">Email</label>
+                                {% if form.password1.errors %}
+                                    <div class="error [&>ul]:space-y-2">
+                                        {{ form.password1.errors }}
+                                    </div>
+                                {% endif %}
                                 <div class="form-field">
                                     {% render_field form.password1 class="block text-black shadow-sm focus:ring-emerald-500 focus:border-emerald-500 text-sm" placeholder="Password" %}
                                 </div>
+                                <details class="text-sm rounded-md border border-gray-700">
+                                    <summary class="px-2 py-1 flex items-center justify-between list-none cursor-pointer bg-gray-700">
+                                        <div> Password requirements </div>
+                                        <span class="transition-transform duration-200 [details[open]_&]:rotate-90">{% include "svgs/chevron.svg" with class="w-5 h-5" %}</span>
+                                    </summary>
+                                    <div class="px-2 py-1 mt-2 min-w-full [&>ul]:space-y-1 w-0">
+                                        {{ form.password1.help_text | safe }}
+                                    </div>
+                                </details>
                             </div>
-                            {% if form.password1.errors %}
-                                <div class="error [&>ul]:space-y-2">
-                                    {{ form.password1.errors }}
-                                </div>
-                            {% endif %}
                             <div class="mt-4">
                                 <label class="sr-only" for="form.password2.id_for_label">Email</label>
                                 <div class="form-field">
@@ -53,13 +62,15 @@
                                 Create your account
                             </button>
                         </form>
-                        {% if SOCIALACCOUNT_ENABLED %}
-                            {% include "socialaccount/snippets/login.html" with providers=social_providers %}
-                        {% endif %}
+                        <div class="space-y-4">
+                            {% if SOCIALACCOUNT_ENABLED %}
+                                {% include "socialaccount/snippets/login.html" with providers=social_providers %}
+                            {% endif %}
+                        </div>
                     </div>
                 </div>
-                <div class="px-4 py-6 bg-gray-700 sm:px-10 rounded-b-lg">
-                    <p class="text-xs leading-5">
+                <div class="px-4 py-3 bg-gray-700 sm:px-10 rounded-b-lg">
+                    <p class="text-sm leading-5">
                         By signing up, you agree to our <a href="#" class="text-emerald-600 hover:text-emerald-700">Terms of Service</a> and <a href="#" class="text-emerald-600 hover:text-emerald-700">Privacy Policy</a>.
                     </p>
                 </div>
