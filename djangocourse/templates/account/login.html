@@ -41,11 +41,11 @@
             </div>
 
             <button class="button primary flex justify-center w-full" type="submit">Sign in</button>
+            
+            {% if SOCIALACCOUNT_ENABLED %}
+                {% include "socialaccount/snippets/login.html" with providers=social_providers %}
+            {% endif %}
         </form>
-
-        {% if SOCIALACCOUNT_ENABLED %}
-            {% include "socialaccount/snippets/login.html" with page_layout="entrance" %}
-        {% endif %}
     </div>
 </main>
 {% endblock content %}

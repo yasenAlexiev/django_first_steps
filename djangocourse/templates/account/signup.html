@@ -1,0 +1,66 @@
+{% extends "app/base.html" %}
+
+{% load widget_tweaks %}
+{% load allauth account %}
+
+{% block content %}
+
+<main class="max-w-7xl mx-auto mt-10 lg:mt-20">
+    <div class="flex flex-col items-center lg:flex-row lg:items-start space-y-6">
+        <div class="basis-3/5 lg:mt-10">
+            <h1 class="text-4xl font-bold tracking-tight leading-none lg:text-5xl xl:text-6xl ">
+                <span class="md:block">Write and collaborate</span>
+                <span class="md:block text-emerald-600">
+                    <span class="text-black">on your</span> next piece
+                </span>
+            </h1>
+            <p class="mt-6 text-xl text-gray-600">
+                Write on our platform for maximum productivity.
+            </p>
+        </div>
+        <div class="basis-2/5">
+            <div class="bg-gray-800 text-white rounded-lg">
+                <div class="p-6 lg:p-16">
+                    <p class="text-xl font-semibold">Create your account</p>
+                    <div class="mt-6">
+                        <form method="post" class="space-y-6 mb-4" action="{% url 'account_signup' %}">
+                            {% csrf_token %}
+                            <div class="mt-4">
+                                <label class="sr-only" for="form.email.id_for_label">Email</label>
+                                <div class="form-field">
+                                    {% render_field form.email class="block text-black shadow-sm focus:ring-emerald-500 focus:border-emerald-500 text-sm" placeholder="Email" %}
+                                </div>
+                            </div>
+                            <div class="mt-4">
+                                <label class="sr-only" for="form.password1.id_for_label">Email</label>
+                                <div class="form-field">
+                                    {% render_field form.password1 class="block text-black shadow-sm focus:ring-emerald-500 focus:border-emerald-500 text-sm" placeholder="Password" %}
+                                </div>
+                            </div>
+                            <div class="mt-4">
+                                <label class="sr-only" for="form.password2.id_for_label">Email</label>
+                                <div class="form-field">
+                                    {% render_field form.password2 class="block text-black shadow-sm focus:ring-emerald-500 focus:border-emerald-500 text-sm" placeholder="Password (again)" %}
+                                </div>
+                            </div>
+                            <div class="text-sm text-center">Already have an account? <a href="{% url 'account_login' %}" class="text-emerald-600 hover:text-emerald-700">Login</a></div>
+                            <button type="submit" class="button primary w-full mt-2 text-sm">
+                                Create your account
+                            </button>
+                        </form>
+                        {% if SOCIALACCOUNT_ENABLED %}
+                            {% include "socialaccount/snippets/login.html" with providers=social_providers %}
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="px-4 py-6 bg-gray-700 sm:px-10 rounded-b-lg">
+                    <p class="text-xs leading-5">
+                        By signing up, you agree to our <a href="#" class="text-emerald-600 hover:text-emerald-700">Terms of Service</a> and <a href="#" class="text-emerald-600 hover:text-emerald-700">Privacy Policy</a>.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+{% endblock content%}
