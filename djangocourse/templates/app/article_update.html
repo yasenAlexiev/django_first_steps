@@ -1,5 +1,7 @@
 {% extends "app/layouts/base_form.html" %}
 
+{% block head_title %}– Update article{% endblock head_title %}
+
 {% block article_stats %}
     <p class="text-center">Article with {{ article.word_count }} word{{ article.word_count | pluralize }}</p>
     <p>Last updated at <span class="font-bold">{{ article.updated_at | date:"jS F Y" }}</span></p>
