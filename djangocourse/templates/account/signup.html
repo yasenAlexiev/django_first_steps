@@ -37,6 +37,11 @@
                                     {% render_field form.password1 class="block text-black shadow-sm focus:ring-emerald-500 focus:border-emerald-500 text-sm" placeholder="Password" %}
                                 </div>
                             </div>
+                            {% if form.password1.errors %}
+                                <div class="error [&>ul]:space-y-2">
+                                    {{ form.password1.errors }}
+                                </div>
+                            {% endif %}
                             <div class="mt-4">
                                 <label class="sr-only" for="form.password2.id_for_label">Email</label>
                                 <div class="form-field">

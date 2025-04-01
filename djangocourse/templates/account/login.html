@@ -14,13 +14,13 @@
         <form method="POST" class="space-y-6" action="{% url 'account_login' %}">
             {% csrf_token %}
             {% if form.errors %}
-            {% for field, errors in form.errors.items %}
-                {% for error in errors %}
-                    <div class="bg-red-900 p-4 rounded-md">
-                        <p class="text-red-100">{{ error }}</p>
-                    </div>
-                {% endfor %}
-            {% endfor%}
+                {% for field, errors in form.errors.items %}
+                    {% for error in errors %}
+                        <div class=error">
+                            <p class="text-red-100">{{ error }}</p>
+                        </div>
+                    {% endfor %}
+                {% endfor%}
             {% endif %}
             
             <div class="mt-4">
