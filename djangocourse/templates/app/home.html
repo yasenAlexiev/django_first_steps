@@ -27,11 +27,27 @@
                  {{ article.title }}
                  <span class="ml-2 px-4 py-0.5 text-xs rounded-sm uppercase article-status-{{ article.status }}">{{ article.status }}</span>
                 </a>
-                <p class="text-sm"> {{ article.word_count}} word{{ article.word_count | pluralize }}
-                </p>
-                </li>
+                <p class="text-sm"> {{ article.word_count}} word{{ article.word_count | pluralize }} </p>
+            </li>
         {% endfor %}
         </ul>
+        {% if is_paginated %}
+            <div class="flex items-center justify-center mt-4">
+                {% if page_obj.has_previous %}
+                    <a class="mx-2 flex items-center justify-center"href="?page={{ page_obj.previous_page_number }}">
+                        <span class="inline-block transform rotate-180 w-8 h-8 border border-gray-300 rounded-md flex items-center justify-center p-1">{% include "svgs/chevron.svg" with class="w-5 h-5" %}</span>
+                    </a>
+                {% endif %}
+
+                <span> Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}. </span>
+
+                {% if page_obj.has_next %}
+                    <a class="mx-2" href="?page={{ page_obj.next_page_number }}">
+                        <span class="w-8 h-8 border border-gray-300 rounded-md flex items-center justify-center p-1">{% include "svgs/chevron.svg" with class="w-5 h-5" %}</span>
+                    </a>
+                {% endif %}
+            </div>
+        {% endif %}
     {% else %}
         <p>There is no articles yet</p>
     {% endif %}

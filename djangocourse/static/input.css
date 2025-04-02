@@ -98,3 +98,7 @@ select[class*="article-status-"] option {
 .messages {
     @apply border p-2 border-gray-400 bg-gray-200 rounded-md;
 }
+
+.pagination-chevron-left {
+    transform: rotate(180deg);
+}
