@@ -1,6 +1,6 @@
 # Django Blog Platform
 
-A modern blog platform built with Django, following the Udemy course "Django 5.0 & Python: The Ultimate Web Development Bootcamp". This project serves as a learning exercise to understand Django's core concepts and modern web development practices.
+A modern blog platform built with Django, following the Udemy course "Full Stack Web Development with Django 5, TailwindCSS, HTMX". This project serves as a learning exercise to understand Django's core concepts and modern web development practices.
 
 ## 🚀 Features
 
@@ -99,7 +99,7 @@ docker-compose exec web python manage.py migrate
 
 ## 📚 Learning Resources
 
-This project is part of the Udemy course "Django 5.0 & Python: The Ultimate Web Development Bootcamp". The course covers:
+This project is part of the Udemy course "Full Stack Web Development with Django 5, TailwindCSS, HTMX". The course covers:
 
 - Django fundamentals
 - Authentication and authorization
@@ -108,6 +108,8 @@ This project is part of the Udemy course "Django 5.0 & Python: The Ultimate Web 
 - Forms and validation
 - Static files and media handling
 - Deployment strategies
+- TailwindCSS integration
+- HTMX for dynamic web interfaces
 
 ## 🤝 Contributing
 
@@ -125,6 +127,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 🙏 Acknowledgments
 
-- [Udemy Course](https://www.udemy.com/course/django-5-python-web-development/) for providing the learning path
+- [Udemy Course](https://shorturl.at/mm06y) for providing the learning path
 - Django community for their excellent documentation
 - All open-source libraries used in this project
