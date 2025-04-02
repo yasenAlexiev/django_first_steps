@@ -17,6 +17,19 @@
     <a class="button primary inline-block mb-6 w-full sm:w-auto text-center" href="{% url 'create_article' %}">Start new article<a>
     <h2 class="subtitle mb-6">Your latest articles</h2>
 
+
+    <form method="get" class="flex flex-col sm:flex-row gap-3">
+        <input type="search" name="search" placeholder="Search articles" value="{{ request.GET.search }}" 
+            class="text-black shadow-sm focus:ring-emerald-500 focus:border-emerald-500 sm:text-sm border-gray-300 rounded-md"></input>
+        <div class="flex gap-3">
+            <button type="submit" class="flex gap-1 button secondary items-center justify-center">
+                {% include "svgs/magnifying-glass.svg" with class="w-7 h-7 mr-2" %}
+                Search
+            </button>
+            <a href="{% url 'home' %}" class="button secondary text-center">Clear search</a>
+        </div>
+    </form>
+
     {% if articles %}
         <ul>
         {% for article in articles %}
@@ -32,9 +45,9 @@
         {% endfor %}
         </ul>
         {% if is_paginated %}
-            <div class="flex items-center justify-center mt-4">
+            <div class="flex items-center justify-center mt-4 text-xl">
                 {% if page_obj.has_previous %}
-                    <a class="mx-2 flex items-center justify-center"href="?page={{ page_obj.previous_page_number }}">
+                    <a href="?page={{ page_obj.previous_page_number }}{% if request.GET.search %}&search={{ request.GET.search }}{% endif %}" class="mx-2 flex items-center justify-center">
                         <span class="inline-block transform rotate-180 w-8 h-8 border border-gray-300 rounded-md flex items-center justify-center p-1">{% include "svgs/chevron.svg" with class="w-5 h-5" %}</span>
                     </a>
                 {% endif %}
@@ -42,7 +55,7 @@
                 <span> Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}. </span>
 
                 {% if page_obj.has_next %}
-                    <a class="mx-2" href="?page={{ page_obj.next_page_number }}">
+                    <a href="?page={{ page_obj.next_page_number }}{% if request.GET.search %}&search={{ request.GET.search }}{% endif %}" class="mx-2 flex items-center justify-center">
                         <span class="w-8 h-8 border border-gray-300 rounded-md flex items-center justify-center p-1">{% include "svgs/chevron.svg" with class="w-5 h-5" %}</span>
                     </a>
                 {% endif %}
