@@ -4,7 +4,9 @@
 
 {% block base_content %}
 <main class="max-w-7xl mx-auto mt-10">
-    <form method="post">
+    <form method="post" x-data="{
+        articleStatus: ''
+    }">
         {% csrf_token %}
         
         <div class="mb-4">
@@ -12,17 +14,17 @@
         </div>
         
         <div class="flex gap-10 mb-10 items-center">
-            {% render_field form.status class="text-xs mt-2 border-none rounded-sm uppercase" %}
+            {% render_field form.status class="text-xs border-none rounded-sm uppercase" x-bind::class="`article-status-${articleStatus}`" x-model.fill="articleStatus" %}
             {% block article_stats %}
             {% endblock article_stats%}
         </div>
         
         <div class="mb-10">
-            {% render_field form.content rows=20 %}
+            {% render_field form.content rows=20 class="w-full rounded-md border-2 border-gray-500" %}
         </div>
         <div class="mb-10">
             <p class="text-xl font-semibold mb-2">{{form.twitter_post.label}}</p>
-            {% render_field form.twitter_post rows=10 class="w-full"%}
+            {% render_field form.twitter_post rows=10 class="w-full rounded-md border-2 border-gray-200"%}
         </div>
         
         {% block buttons %}
