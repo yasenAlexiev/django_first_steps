@@ -1,4 +1,6 @@
 from typing import Any
+from django.contrib.messages.views import SuccessMessageMixin
+from django.contrib import messages
 from django.db.models.query import QuerySet
 from django.shortcuts import render
 from django.urls import reverse_lazy
@@ -53,4 +55,8 @@ class ArticleDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     def test_func(self) -> bool | None:
         article = self.get_object()
         return self.request.user == article.creator
+    
+    def post(self, request, *args, **kwargs):
+        messages.success(request, "Article deleted successfully", extra_tags="destuctive")
+        return super().post(request, *args, **kwargs)
     
