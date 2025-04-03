@@ -35,7 +35,7 @@
 }
 
 .EasyMDEContainer, .CodeMirror {
-    @apply !border-none !bg-inherit;
+    @apply rounded-md border-gray-200 border-2 text-base leading-6;
 }
 
 .EasyMDEContainer:has(textarea:focus), textarea:focus {
