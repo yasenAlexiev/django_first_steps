@@ -25,7 +25,7 @@
                 <div class="p-4 lg:p-16">
                     <p class="text-xl font-semibold">Create your account</p>
                     <div class="mt-6">
-                        <form method="post" class="space-y-6 mb-4" action="{% url 'account_signup' %}">
+                        <form method="post" class="space-y-6 mb-4"">
                             {% csrf_token %}
                             <div>
                                 <label class="sr-only" for="form.email.id_for_label">Email</label>
@@ -53,12 +53,7 @@
                                     </div>
                                 </details>
                             </div>
-                            <div class="mt-4">
-                                <label class="sr-only" for="form.password2.id_for_label">Email</label>
-                                <div class="form-field">
-                                    {% render_field form.password2 class="block text-black shadow-sm focus:ring-emerald-500 focus:border-emerald-500 text-sm" placeholder="Password (again)" %}
-                                </div>
-                            </div>
+                        
                             <div class="text-sm text-center">Already have an account? <a href="{% url 'account_login' %}" class="text-emerald-600 hover:text-emerald-700">Login</a></div>
                             <button type="submit" class="button primary w-full mt-2 text-sm">
                                 Create your account
