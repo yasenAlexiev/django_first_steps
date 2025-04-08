@@ -51,7 +51,6 @@ DJANGO_APPS = [
 
 THIRD_PARTY_APPS = [
     "allauth",
-    "anymail",
     "allauth.account",
     "allauth.socialaccount",
     "allauth.socialaccount.providers.github",
@@ -150,30 +149,20 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-# Email settings
-DEFAULT_FROM_EMAIL = "Mailgun Sandbox <postmaster@sandboxcdc0b2cf17fa4e30873358c104bb3fa2.mailgun.org>"
-
-ANYMAIL = {
-    "MAILGUN_API_KEY": "8b6503abc36dc68c5372660c5f97a33b-2b77fbb2-35424ecb",
-    "MAILGUN_SENDER_DOMAIN": "sandboxcdc0b2cf17fa4e30873358c104bb3fa2.mailgun.org",
-    "SEND_DEFAULTS": {
-        "tags": ["djangocourse1"],
-        "from_email": DEFAULT_FROM_EMAIL
-    }
-}
-
-EMAIL_BACKEND = "anymail.backends.mailgun.EmailBackend"
 
 LOGIN_REDIRECT_URL = "home"
 LOGOUT_REDIRECT_URL = "account_login"
 
-#Allauth settings
+# Allauth settings
 ACCOUNT_AUTHENTICATION_METHOD = "email"
-ACCOUNT_UNIQUE_EMAIL = True
 ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_UNIQUE_EMAIL = True
 ACCOUNT_USERNAME_REQUIRED = False
-ACCOUNT_EMAIL_VERIFICATION = True
+ACCOUNT_EMAIL_VERIFICATION = "none"
 ACCOUNT_SIGNUP_PASSWORD_ENTER_TWICE = False
+
+# Site settings
+SITE_ID = 1
 
 # Internationalization
 # https://docs.djangoproject.com/en/5.1/topics/i18n/
