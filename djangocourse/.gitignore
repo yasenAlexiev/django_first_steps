@@ -1,2 +1,3 @@
 /node_modules
 /djangocourse1/__pycache__
+*.pyc
